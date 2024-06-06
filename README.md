@@ -1,2 +1,4 @@
-# NeetCode150-Solved
-Collection of LeetCode questions to ace the coding interview! - Created using [LeetHub v3](https://github.com/raphaelheinz/LeetHub-3.0)
+# LeetCode Solutions
+
+Need to LeetCode or NGMI
+This is my repository for tracking my solutions to LeetCode problems. This repository serves as a personal record of my progress.
