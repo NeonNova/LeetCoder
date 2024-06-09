@@ -8,9 +8,6 @@ class Solution:
             prefix_sum += num
             mod = prefix_sum % k
             
-            # If mod is negative, convert it to a positive equivalent
-            #if mod < 0:
-                #mod += k
             
             # If mod is in the hashmap, it means we have seen this mod value before
             if mod in mod_count:
