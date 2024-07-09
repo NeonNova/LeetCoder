@@ -3,39 +3,39 @@ class Solution:
         if len(s2) < len(s1):
             return False
 
-        bigCount = [0]*26
-        smolCount = [0]*26
+        bigCount = defaultdict(int)
+        smolCount = defaultdict(int)
 
         for i in range(len(s1)):
-            bigCount[ord(s1[i]) - 97] += 1
-            smolCount[ord(s2[i]) - 97] += 1
+            bigCount[s1[i]] += 1
+            smolCount[s2[i]] += 1
 
-        matches = 0 
+        matches = 0
 
-        for i in range(26):
-            matches += (1 if bigCount[i] == smolCount[i] else 0)
+        for char in bigCount:
+            if bigCount[char] == smolCount[char]:
+                matches += 1
 
-        if matches == 26:
-            return True
-
-        l = 0 
+        l = 0
         for r in range(len(s1), len(s2)):
-            index = ord(s2[r]) - 97
-            smolCount[index] += 1
-            if bigCount[index] == smolCount[index]:
-                matches += 1
-            elif bigCount[index] + 1 == smolCount[index]:
-                matches -= 1
-
-            index = ord(s2[l]) - 97
-            smolCount[index] -= 1
-            if bigCount[index] == smolCount[index]:
-                matches += 1
-            elif bigCount[index] - 1 == smolCount[index]:
-                matches -= 1
-            l += 1
-
-            if matches == 26:
+            if matches == len(bigCount):
                 return True
 
-        return False
+            right_char = s2[r]
+            left_char = s2[l]
+
+            smolCount[right_char] += 1
+            if bigCount[right_char] == smolCount[right_char]:
+                matches += 1
+            elif bigCount[right_char] + 1 == smolCount[right_char]:
+                matches -= 1
+
+            smolCount[left_char] -= 1
+            if bigCount[left_char] == smolCount[left_char]:
+                matches += 1
+            elif bigCount[left_char] - 1 == smolCount[left_char]:
+                matches -= 1
+
+            l += 1
+
+        return matches == len(bigCount)
