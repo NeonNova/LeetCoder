@@ -8,7 +8,7 @@ class Solution:
         dummy = ListNode()
         tail = dummy
 
-        while list1 and list2:
+        while list1 and list2: #run it until one of them exhause so then the other entire remainder you can just append
             if list1.val < list2.val:
                 tail.next = list1
                 list1 = list1.next
