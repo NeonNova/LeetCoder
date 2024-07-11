@@ -1,16 +1,16 @@
 class Solution:
     def reverseParentheses(self, s: str) -> str:
         stack = []
-        
         for char in s:
-            if char != ')':
-                stack.append(char)  # Push characters to the stack until we hit a ')'
+            if char == ')':
+                rev = ""
+                while stack and stack[-1] != '(':
+                    rev += stack.pop()
+                if stack:
+                    stack.pop()  # pop the opening bracket
+                for c in rev:
+                    stack.append(c)
             else:
-                to_reverse = []
-                # Pop characters from the stack until we hit a '('
-                while stack[-1] != '(':
-                    to_reverse.append(stack.pop())
-                stack.pop()  
-                stack.extend(to_reverse)
-        
+                stack.append(char)
+
         return ''.join(stack)
